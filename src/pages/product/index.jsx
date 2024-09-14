@@ -1,10 +1,10 @@
 import React from 'react'
-import ListPerson from '@/components/person/list'
+import ListProduct from '@/components/product/list'
 
 const index = () => {
   return (
     <>
-      <ListPerson/>
+      <ListProduct/>
     </>
   )
 }

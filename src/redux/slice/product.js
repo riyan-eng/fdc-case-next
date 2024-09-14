@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "@/axios/product"
 
 const initialState = {
     list: {
@@ -9,28 +9,28 @@ const initialState = {
     }
 }
 
-export const getListExample = createAsyncThunk(
-    "example/list",
+export const getListProduct = createAsyncThunk(
+    "product/list",
     async (payload) => {
-        return await axios.get(`https://api.escuelajs.co/api/v1/products?offset=${payload.offset}&limit=8`)
+        return await axios.get(`/api/v1/products?offset=${payload.offset}&limit=8`)
     }
 )
 
 const slice = createSlice({
-    name: "example",
+    name: "product",
     initialState: initialState,
     extraReducers: (builder) => {
-        builder.addCase(getListExample.pending, (state) => {
+        builder.addCase(getListProduct.pending, (state) => {
             state.list.isLoading = true
         })
-        builder.addCase(getListExample.fulfilled, (state, action) => {
+        builder.addCase(getListProduct.fulfilled, (state, action) => {
             state.list.isLoading = false
             // console.log(action.payload.data);
 
             const data = action.payload.data
             state.list.data = data
         })
-        builder.addCase(getListExample.rejected, (state) => {
+        builder.addCase(getListProduct.rejected, (state) => {
             state.list.isLoading = false
             state.list.isError = true
         })
